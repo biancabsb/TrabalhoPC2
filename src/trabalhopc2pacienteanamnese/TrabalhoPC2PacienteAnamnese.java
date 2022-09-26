@@ -96,14 +96,14 @@ public class TrabalhoPC2PacienteAnamnese {
 
                 switch (select) {
                     case 1:
-                        
+
                         Anamnese a = new Anamnese();
                         Paciente c = new Paciente();
                         Scanner sc = new Scanner(System.in);
-                        
+
                         System.out.println("Qual o número da CNS do paciente? ");
                         long numCNS2 = sc.nextInt();
-                        
+
                         if (sistema.buscarCNS(numCNS2) != null) {
                             System.out.println("Paciente: " + sistema.buscarCNS(numCNS2).nome);
                             System.out.println("Qual o motivo? ");
@@ -114,7 +114,7 @@ public class TrabalhoPC2PacienteAnamnese {
                             a.diagnostico = sc.next();
                             a.paciente = sistema.buscarCNS(numCNS2);
                             sistema.AdicionarAnamnese(a);
-                            sistema.adicionarAnam(sistema.buscarCNS(numCNS2), a);
+                            a.paciente = sistema.buscarCNS(numCNS2);
                         } else {
                             System.out.println("CNS não encontrada");
                         }
@@ -124,15 +124,21 @@ public class TrabalhoPC2PacienteAnamnese {
                         Scanner scn = new Scanner(System.in);
                         System.out.println("Qual o nome do paciente? ");
                         String nome = scn.next();
-                        if (sistema.buscarNome(nome) != null) {
-                            System.out.println("NOME \t" + "NOME DA MÃE \t");
-                            System.out.println(sistema.buscarNome(nome).nome + "\t" + sistema.buscarNome(nome).nomeMae);
-                            sistema.listarAnam(sistema.buscarNome(nome));
+                        Anamnese[] nomess = new Anamnese[20];
 
+                        if (sistema.buscarNomeAnam(nome) != null) {
+                            System.out.println("NOME \t" + "NOME DA MÃE \t");
+                            nomess = sistema.buscarNomeAnam(nome);
+                            int j = 0;
+                            for (int i = 0; i < sistema.buscarNomeAnam(nome).length; i++) {
+                                if (nomess[i] != null) {
+                                    System.out.println(nomess[i].paciente.nome + "\t" + nomess[i].paciente.nomeMae);
+                                    j = +1;
+                                }
+                            }
                         } else {
                             System.out.println("erro");
                         }
-
                         break;
 
                     case 3:

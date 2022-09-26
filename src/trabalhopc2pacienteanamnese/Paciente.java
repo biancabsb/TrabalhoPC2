@@ -7,5 +7,5 @@ public class Paciente {
     Sexo sexo;
     Endereco endereco;
     Anamnese anamnese;
-    Anamnese[] vetAnamnese = new Anamnese[3];
+    Anamnese[] vetAnamnese = new Anamnese[10];
 }
