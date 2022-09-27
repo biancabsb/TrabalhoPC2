@@ -27,19 +27,29 @@ public class TrabalhoPC2PacienteAnamnese {
                 do {
 
                     System.out.println("*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*="
-                            + "CADASTRO DE PACIENTE*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=");
+                            + "MEU ATENDENTE*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=");
+
                     System.out.println("Digite 0 para sair: ");
                     System.out.println("Digite 1 para cadastrar um paciente: ");
                     System.out.println("Digite 2 para alterar um paciente: ");
                     System.out.println("Digite 3 para excluir um paciente: ");
                     System.out.println("Digite 4 para buscar um pacientes: ");
                     System.out.println("Digite 5 para listar os pacientes: ");
+                    System.out.println("Digite -1 para voltar ao menu principal: ");
 
                     select = sc.nextInt();
                     sc.nextLine();
 
                     switch (select) {
 
+                        case -1:
+                            System.out.println("*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*="
+                                    + "MENU PRINCIPAL*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=");
+                            System.out.println("Digite 1 para MENU ATENDENTE ");
+                            System.out.println("Digite 2 para MENU MÉDICO");
+                            select = sc.nextInt();
+                            sc.nextLine();
+                            break;
                         case 0:
                             break;
 
@@ -84,71 +94,113 @@ public class TrabalhoPC2PacienteAnamnese {
                             break;
                     }
                 } while (select != 0);
+
                 break;
 
             case 2:
-                System.out.println("Digite 1 para adicionar uma nova anamnese: ");
-                System.out.println("Digite 2 para alterar uma anamnese: ");
-                System.out.println("Digite 3 para listar anamneses: ");
+                do {
 
-                select = sc.nextInt();
-                sc.nextLine();
+                    System.out.println("Digite 0 para sair ");
+                    System.out.println("Digite 1 para ADICIONAR UMA NOVA ANAMNESE ");
+                    System.out.println("Digite 2 para ALTERAR UMA ANAMNESE ");
+                    System.out.println("Digite 3 para LISTAR ANAMNESE ");
+                    System.out.println("Digite -1 para voltar ao menu principal: ");
 
-                switch (select) {
-                    case 1:
+                    select = sc.nextInt();
+                    sc.nextLine();
 
-                        Anamnese a = new Anamnese();
-                        Paciente c = new Paciente();
-                        Scanner sc = new Scanner(System.in);
+                    switch (select) {
+                        case -1:
+                            System.out.println("*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*="
+                                    + "MENU PRINCIPAL*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=");
+                            System.out.println("Digite 1 para MENU ATENDENTE ");
+                            System.out.println("Digite 2 para MENU MÉDICO");
+                            select = sc.nextInt();
+                            sc.nextLine();
+                            break;
+                        case 1:
 
-                        System.out.println("Qual o número da CNS do paciente? ");
-                        long numCNS2 = sc.nextInt();
+                            Anamnese a = new Anamnese();
+                            Paciente c = new Paciente();
+                            Scanner sc = new Scanner(System.in);
 
-                        if (sistema.buscarCNS(numCNS2) != null) {
-                            System.out.println("Paciente: " + sistema.buscarCNS(numCNS2).nome);
-                            System.out.println("Qual o motivo? ");
-                            a.motivo = sc.next();
-                            System.out.println("Descreva o relato:");
-                            a.relato = sc.next();
-                            System.out.println("Qual o diagnóstico?");
-                            a.diagnostico = sc.next();
-                            a.paciente = sistema.buscarCNS(numCNS2);
-                            sistema.AdicionarAnamnese(a);
-                            a.paciente = sistema.buscarCNS(numCNS2);
-                        } else {
-                            System.out.println("CNS não encontrada");
-                        }
-                        break;
+                            System.out.println("NÚMERO DA CNSS DO PACIENTE:  ");
+                            long numCNS2 = sc.nextInt();
 
-                    case 2:
-                        Scanner scn = new Scanner(System.in);
-                        System.out.println("Qual o nome do paciente? ");
-                        String nome = scn.next();
-                        Anamnese[] nomess = new Anamnese[20];
-
-                        if (sistema.buscarNomeAnam(nome) != null) {
-                            System.out.println("NOME \t" + "NOME DA MÃE \t");
-                            nomess = sistema.buscarNomeAnam(nome);
-                            int j = 0;
-                            for (int i = 0; i < sistema.buscarNomeAnam(nome).length; i++) {
-                                if (nomess[i] != null) {
-                                    System.out.println(nomess[i].paciente.nome + "\t" + nomess[i].paciente.nomeMae);
-                                    j = +1;
-                                }
+                            if (sistema.buscarCNS(numCNS2) != null) {
+                                System.out.println("");
+                                System.out.println("PACIENTE: " + sistema.buscarCNS(numCNS2).nome);
+                                System.out.println("");
+                                System.out.println("RELATO DO PACIENTE:");
+                                a.relato = sc.next();
+                                System.out.println("MOTIVO: ");
+                                a.motivo = sc.next();
+                                System.out.println("DIAGNOÓSTICO");
+                                a.diagnostico = sc.next();
+                                a.paciente = sistema.buscarCNS(numCNS2);
+                                sistema.AdicionarAnamnese(a);
+                                a.paciente = sistema.buscarCNS(numCNS2);
+                                System.out.println("*=*=*=* ANAMNESE ALTERADA COM SUCESSO *=*=*=*");
+                            } else {
+                                System.out.println("CNS NÃO ENCONTRADA");
                             }
-                        } else {
-                            System.out.println("erro");
-                        }
-                        break;
 
-                    case 3:
-                        System.out.println("*************Anamneses*****************");
-                        sistema.listarTodasAnam();
+                            break;
 
-                }
+                        case 2:
+                            Scanner scn = new Scanner(System.in);
+                            System.out.println("NOME DO PACIENTE:  ");
+                            String nome = scn.next();
+                            Anamnese[] nomess = new Anamnese[10];
+
+                            if (sistema.buscarNomeAnam(nome) != null) {
+                                System.out.println("ID " + "\t" + "NOME \t" + "NOME DA MÃE \t");
+                                nomess = sistema.buscarNomeAnam(nome);
+                                int j = 0;
+                                for (int i = 0; i < sistema.buscarNomeAnam(nome).length; i++) {
+                                    if (nomess[i] != null) {
+                                        System.out.println(i + "\t" + nomess[i].paciente.nome + "\t" + nomess[i].paciente.nomeMae);
+                                        j = +1;
+                                    }
+                                }
+                            } else {
+                                System.out.println("PACIENTE NÃO ENCONTRADO");
+                            }
+                           
+                            
+                                System.out.println("DIGITE O ID DO PACIENTE QUE DESJA ALTERAR ANAMNESE ");
+                                int escolha = scn.nextInt();
+                                int x = sistema.identificarID(escolha, nomess);
+                                System.out.println("ID " + "\t" + "NOME \t" + "NOME DA MÃE \t");
+                                System.out.println(x + "\t" + nomess[x].paciente.nome + "\t" + nomess[x].paciente.nomeMae);
+                                System.out.println("ID " + "\t" + "NOME \t" + "NOME DA MÃE \t");
+                                nomess[x].diagnostico = null;
+                                nomess[x].motivo = null;
+                                nomess[x].relato = null;
+                                Scanner scc = new Scanner(System.in);
+                                System.out.println("MOTIVO: ");
+                                nomess[x].motivo = scc.next();
+                                System.out.println("RELATO DO PACIENTE: ");
+                                nomess[x].relato = scc.next();
+                                System.out.println("DIAGNÓSTICO");
+                                nomess[x].diagnostico = scc.next();
+                                sistema.AdicionarAnamnese(nomess[x]);
+                                System.out.println("*=*=*=* ANAMNESE ALTERADA COM SUCESSO *=*=*=*\n");
+
+                            
+
+                            break;
+
+                        case 3:
+                            System.out.println("*=*=*=*=*=*=* ANAMNESES *=*=*=*=*=*=*");
+                            sistema.listarTodasAnam();
+                            System.out.println("");
+                            break;
+                    }
+
+                } while (select != 0);
 
         }
 
     }
-
 }

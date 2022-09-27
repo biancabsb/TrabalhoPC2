@@ -96,7 +96,6 @@ public class Sistema {
         }
     }
 
-   
     void aumentarPac(Paciente p) {
 
         Paciente[] aux = new Paciente[paciente.length * 2];
@@ -170,13 +169,13 @@ public class Sistema {
     }
 
     void listarAnam(Paciente p) {
-            System.out.println("DIAGNÓSTICO: \t \t" + "MOTIVO: \t \t" + "RELATO: ");
-            for (int i = 0; i < anamnese.length ; i++) {
-                if (anamnese[i] != null) {
-                    System.out.println(i + 1 + " " + anamnese[i].diagnostico + " \t \t" + anamnese[i].motivo + " \t \t" + anamnese[i].relato + " ");
-                }
+        System.out.println("DIAGNÓSTICO: \t \t" + "MOTIVO: \t \t" + "RELATO: ");
+        for (int i = 0; i < anamnese.length; i++) {
+            if (anamnese[i] != null) {
+                System.out.println(i + 1 + " " + anamnese[i].diagnostico + " \t \t" + anamnese[i].motivo + " \t \t" + anamnese[i].relato + " ");
             }
-        
+        }
+
     }
 
     boolean listarTodasAnam() {
@@ -197,22 +196,29 @@ public class Sistema {
         Anamnese[] nomes = new Anamnese[10];
         if (paciente != null) {
             for (int i = 0; i < paciente.length; i++) {
-                 if (anamnese[i] != null){
-                if (paciente[i]!= null && nome.equals(paciente[i].nome)) {
-                    if (nome.equals(anamnese[i].paciente.nome)) {
-                        nomes[i] =anamnese[i];
+                if (anamnese[i] != null) {
+                    if (paciente[i] != null && nome.equals(paciente[i].nome)) {
+                        if (nome.equals(anamnese[i].paciente.nome)) {
+                            nomes[i] = anamnese[i];
+                        }
                     }
                 }
-                 }
-            }return nomes;
+            }
+            return nomes;
         }
         return null;
     }
 
-    void Alterar() {
-
+    int identificarID(int escolha, Anamnese[] nomess) {
+        for (int i = 0; i < nomess.length; i++) {
+            if (escolha == i) {
+                return i;
+            }
+        }
+        return -1;
     }
 
+    
     void init() {
 
         Anamnese a1 = new Anamnese();
@@ -238,9 +244,8 @@ public class Sistema {
         a1.paciente = p1;
         a2.paciente = p1;
 
-        
         AdicionarAnamnese(a1);
-       //  AdicionarAnamnese(a2);
+        //  AdicionarAnamnese(a2);
 
         this.adicionar(p1);
 
@@ -257,13 +262,12 @@ public class Sistema {
         ep2.rua = "Paquetá";
         ep2.numero = 69;
         p2.endereco = ep2;
-        
+
         a4.diagnostico = "Virose";
         a4.motivo = "Tosse";
         a4.relato = "teste";
         a4.paciente = p2;
 
-        
         AdicionarAnamnese(a4);
         this.adicionar(p2);
 
