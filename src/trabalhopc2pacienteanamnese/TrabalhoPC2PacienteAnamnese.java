@@ -1,3 +1,6 @@
+                                                    
+                                                    // GRUPO: BIANCA , AUGUSTO
+
 package trabalhopc2pacienteanamnese;
 
 import java.util.Random;
@@ -131,7 +134,7 @@ public class TrabalhoPC2PacienteAnamnese {
                     System.out.println("Digite 2 para ALTERAR UMA ANAMNESE ");
                     System.out.println("Digite 3 para LISTAR ANAMNESES ");
                     System.out.println("Digite 4 para BUSCAR UMA ANAMNESE ");
-                    System.out.println("Digite -1 para voltar ao menu principal: ");
+                    
                     System.out.print("Digite aqui: ");
                    
 
@@ -140,14 +143,7 @@ public class TrabalhoPC2PacienteAnamnese {
                      System.out.println("*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*="
                             + "*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
                     switch (select) {
-                        case -1:
-                            System.out.println("*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*="
-                                    + "MENU PRINCIPAL*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=");
-                            System.out.println("Digite 1 para MENU ATENDENTE ");
-                            System.out.println("Digite 2 para MENU MÉDICO");
-                            select = sc.nextInt();
-                            sc.nextLine();
-                            break;
+                        
                         case 1:
 
                             Anamnese a = new Anamnese();
@@ -171,9 +167,11 @@ public class TrabalhoPC2PacienteAnamnese {
                                 a.diagnostico = sc.next();
                                 sc.nextLine();
                                 a.paciente = sistema.buscarCNS(numCNS2);
+                                
                                 sistema.AdicionarAnamnese(a);
-                                a.paciente = sistema.buscarCNS(numCNS2);
-                                System.out.println("*=*=*=* ANAMNESE ALTERADA COM SUCESSO *=*=*=*");
+                                sistema.AdicionarAnam( a.paciente, a);
+                               
+                                System.out.println("*=*=*=* ANAMNESE REGISTRADA COM SUCESSO *=*=*=*");
                             } else {
                                 System.out.println("CNS NÃO ENCONTRADA");
                             }
@@ -234,15 +232,15 @@ public class TrabalhoPC2PacienteAnamnese {
                             if (sistema.buscarNomeAnam(nomee) != null) {
                                 System.out.println("ID " + "\t" + "NOME \t" + "NOME DA MÃE \t");
                                 nomesss = sistema.buscarNomeAnam(nomee);
-                                int j = 0;
+                                
                                 for (int i = 0; i < sistema.buscarNomeAnam(nomee).length; i++) {
                                     if (nomesss[i] != null) {
                                         System.out.println(i + "\t" + nomesss[i].paciente.nome + "\t" + nomesss[i].paciente.nomeMae);
-                                        j = +1;
+                                       
                                     }
                                 }
                             } else {
-                                System.out.println("PACIENTE NÃO ENCONTRADO");
+                                System.out.println("INVÁLIDO");
                             }
                             break;
                     }
